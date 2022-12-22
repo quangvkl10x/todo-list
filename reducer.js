@@ -26,7 +26,12 @@ const actions = {
         }
     },
     COMPLETE(state, args){
-        state[args].completed = !state[args].completed;
+        for (let i = 0; i < state.length; i++) {
+            if (state[i].id === args) {
+                state[i].completed = !state[i].completed;
+                return;
+            }
+        }
     },
     FILTER(state, args){
         let allStatus = document.querySelectorAll('.filter-item');
@@ -40,6 +45,7 @@ const actions = {
         window.filterStatus = args;
     },
     DESTROY(state){
+        console.log(state);
         for (let i = 0; i < state.length; i++) {
             if (state[i].completed) {
                 state.splice(i, 1);
