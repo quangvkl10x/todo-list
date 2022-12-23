@@ -2,7 +2,7 @@
 
 const LOCALSTORAGE_KEY = 'todoList';
 
-if (localStorage.getItem(LOCALSTORAGE_KEY) === JSON.stringify(null)) 
+if (localStorage.getItem(LOCALSTORAGE_KEY) === JSON.stringify(null) || !localStorage.getItem(LOCALSTORAGE_KEY))
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([]));
 const TODOS = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 
@@ -34,18 +34,9 @@ const actions = {
         }
     },
     FILTER(state, args){
-        let allStatus = document.querySelectorAll('.filter-item');
-        allStatus.forEach((item) => {
-            item.classList.remove('active-filter');
-        });
-        allStatus.forEach((item) => {
-            if (item.innerText === args) 
-                item.classList.add('active-filter');
-        });
         window.filterStatus = args;
     },
     DESTROY(state){
-        console.log(state);
         for (let i = 0; i < state.length; i++) {
             if (state[i].completed) {
                 state.splice(i, 1);

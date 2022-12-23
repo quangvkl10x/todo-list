@@ -27,9 +27,9 @@ export default function Footer(state){
             </div>
             <div class="footer-item mid-align">
                 <ul class="filter">
-                    <li class="filter-item active-filter" onclick="dispatch('FILTER', 'all'); changeFilterTo('all')">all</li>
-                    <li class="filter-item " onclick="dispatch('FILTER', 'completed'); changeFilterTo('completed')">completed</li>
-                    <li class="filter-item " onclick="dispatch('FILTER', 'active'); changeFilterTo('active')">active</li>
+                    <li class="filter-item ${(filterStatus === 'all') && 'active-filter'}" onclick="dispatch('FILTER', 'all'); changeFilterTo('all')">all</li>
+                    <li class="filter-item ${filterStatus === 'completed' && 'active-filter'}" onclick="dispatch('FILTER', 'completed'); changeFilterTo('completed')">completed</li>
+                    <li class="filter-item ${filterStatus === 'active' && 'active-filter'}" onclick="dispatch('FILTER', 'active'); changeFilterTo('active')">active</li>
                 </ul>
             </div>
             <div class="footer-item right-align">
